@@ -1,4 +1,7 @@
 import math
+import numpy as np
+from pylab import *
+
 print("\nMean, Differences, Squared Differences, Variance, Standard Deviation, Covariance and Correlation Coefficient!")
 # calculating  differences, variable initial_diff will hold the differences
 class Make_Differences(object):
@@ -81,12 +84,12 @@ print("Differences of age: ", diff_two_age)
 
 
 print("\n *** Calculating Covariance and Correlation Coefficient  *** ")
-covariance_weight_age = (diff_one_weight[0] * diff_two_age[0], diff_one_weight[1] * diff_two_age[1], diff_one_weight[2] * diff_two_age[2], diff_one_weight[3] * diff_two_age[3], diff_one_weight[4] * diff_two_age[4])
+covariance_weight_age = [diff_one_weight[0] * diff_two_age[0], diff_one_weight[1] * diff_two_age[1], diff_one_weight[2] * diff_two_age[2], diff_one_weight[3] * diff_two_age[3], diff_one_weight[4] * diff_two_age[4]]
 print("\nHere is the covariance list of age and weight before adding together: ", covariance_weight_age)
 
 print("The result after adding: ", sum(covariance_weight_age))
 
-covariance_x_y = sum(covariance_weight_age) / len(covariance_weight_age)
+covariance_x_y = sum(covariance_weight_age) / (len(covariance_weight_age)-1)
 print("Here is the Covariance of weight and age: ", covariance_x_y )
 
 print("\n *** Correlation Coefficient *** ")
@@ -95,3 +98,13 @@ print("The closer the value is to -1 or 1, the strong the relationship, the clos
 
 r_x_y = covariance_x_y / (math.sqrt(variance) * math.sqrt(variance_two))
 print("\n\tAnd finaly your correlation coefficient result is: ", r_x_y)
+
+
+print("\n *** Calculating Covariance and Correlation Coefficient  The Easy Way *** ")
+print("*** This is how you would do it in the production enviroment! *** ")
+
+
+testcov = np.cov(weight_list, age_list)
+print("\n\tCovariance The easy way: ", testcov)
+testcor = np.corrcoef(weight_list, age_list)
+print("\n\tCorrelation The easy way: ", testcor)
