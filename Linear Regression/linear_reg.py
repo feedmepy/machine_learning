@@ -37,3 +37,8 @@ print(regressor.coef_)
 print(regressor.intercept_)
 
 r2_score(y_test, y_pred)
+
+
+
+plt.scatter(y_test, y_pred)
+plt.show()
